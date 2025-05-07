@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './DataTable.module.scss';
 
 interface ActionButton<T> {
@@ -20,22 +20,25 @@ const DataTable = <T,>({ data, columns, actionButtons }: DataTableProps<T>) => {
     setActiveRow(activeRow === rowIndex ? null : rowIndex);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      activeRow !== null &&
-      modalRefs.current[activeRow] &&
-      !modalRefs.current[activeRow]?.contains(event.target as Node)
-    ) {
-      setActiveRow(null);
-    }
-  };
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (
+        activeRow !== null &&
+        modalRefs.current[activeRow] &&
+        !modalRefs.current[activeRow]?.contains(event.target as Node)
+      ) {
+        setActiveRow(null);
+      }
+    },
+    [activeRow]
+  );
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [activeRow]);
+  }, [handleClickOutside]);
 
   return (
     <div className={styles.tableContainer}>

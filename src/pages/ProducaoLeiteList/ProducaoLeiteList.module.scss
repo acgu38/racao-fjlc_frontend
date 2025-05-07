@@ -1,0 +1,28 @@
+@import '../../styles/variables';
+
+.container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 2px; /* Reduzindo o raio da borda */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.addButton {
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 2px; /* Reduzindo o raio da borda */
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.addButton:hover {
+  background-color: darken($primary-color, 10%);
+}

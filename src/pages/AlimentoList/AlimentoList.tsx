@@ -45,10 +45,6 @@ const AlimentoList: React.FC = () => {
   };
 
   const handleCreateOrUpdateAlimento = async (data: Alimento) => {
-    console.log('data');
-    console.log(data);
-
-    // Convertendo disponibilidade para booleano
     data.disponibilidade =
       (data.disponibilidade as unknown as string) === 'Disponível';
 

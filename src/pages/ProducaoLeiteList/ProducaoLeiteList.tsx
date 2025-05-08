@@ -97,6 +97,18 @@ const ProducaoLeiteList: React.FC = () => {
     { header: 'Hora', accessor: 'hora' },
   ];
 
+  const parseDateToInput = (dateString: string) => {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+    };
+    const stringDate = date.toLocaleDateString('en-US', options).replace(/\//g, '-')
+    console.log(stringDate)
+    return stringDate.split(' ');
+  };
+
+
   const modalFields = [
     {
       label: 'Animal',
@@ -120,12 +132,14 @@ const ProducaoLeiteList: React.FC = () => {
       type: 'date',
       name: 'data',
       required: true,
+      value: parseDateToInput(new Date().toISOString())[0],
     },
     {
       label: 'Hora',
       type: 'time',
       name: 'hora',
       required: true,
+      value: parseDateToInput(new Date().toISOString())[1],
     },
   ];
 

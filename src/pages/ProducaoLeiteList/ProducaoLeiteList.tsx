@@ -119,7 +119,7 @@ const ProducaoLeiteList: React.FC = () => {
         value: animal._id,
       })),
       required: true,
-      value: selectedProducao?.animalId || '',
+      value: selectedProducao?.animalId || animais[0]?._id,
     },
     {
       label: 'Quantidade de Leite (L)',
